@@ -7,6 +7,7 @@ private const val TAG = "QuizViewModel"
 
 class QuizViewModel : ViewModel() {
     var currentIndex = 0
+    var isCheater = false
 
     private val questionBank = listOf(
         Question(R.string.question_australia, answer = true, answered = false),
@@ -34,6 +35,9 @@ class QuizViewModel : ViewModel() {
     }
 
     fun moveToPrev() {
-        currentIndex = if (currentIndex > 0) currentIndex - 1 else questionBank.size - 1
+        currentIndex = when {
+            currentIndex > 0 -> currentIndex - 1
+            else -> questionBank.size - 1
+        }
     }
 }
